@@ -1,0 +1,56 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
+  body{
+    font-family: 'Raleway', sans-serif;
+  }
+
+.jumbotron {
+    position: relative;
+  overflow: hidden;
+  background-color:black;
+
+  height: 85vh;
+  width:100%;
+  display: flex;
+  
+
+}
+.jumbotron video {
+  position: absolute;
+
+
+  z-index: 1;
+  top: 0;
+  width:100%;
+  height:100%;
+  /*  object-fit is not supported on IE  */
+  object-fit: cover;
+  opacity:0.9;
+}
+.jumbotron .container {
+  z-index: 2;
+  position: relative;
+    display: flex;
+    flex-direction: column;
+  align-items: flex-start;
+  justify-content: end;
+  margin: 0 0 2% 4%;
+  
+
+}
+.jumbotron p{
+  max-width: 70%;
+}
+
+.main{
+  margin: 4%;
+}
+
+.news_hed{
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+
+
+}

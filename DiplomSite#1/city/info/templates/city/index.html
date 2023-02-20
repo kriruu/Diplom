@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load i18n%}
+
+
+{% load static %}
+{% block title %}Homepage{% endblock title %}
+  
+
+
+
+{% block content %}
+{% comment %} start background {% endcomment %}
+    <div class="jumbotron jumbotron-fluid">
+      {% for x in video %}
+      {% comment %} {% autoescape off %} {% endcomment %}
+      <video autoplay muted loop poster>    
+        {% comment %} <source src="{% static "video/bridge.mp4" %}" type="video/mp4"> {% endcomment %}
+        <source src="{{x.videofile}}" type="video/mp4">
+      </video>
+        <div class="container text-white">      
+         
+          <h1 class="display-3 fw-bold">{{x.title}}</h1>
+         
+          <p class="lead  text-wrap ">{{x.content}}</p>
+          <hr class="my-4">
+          {% comment %} {% endautoescape %} {% endcomment %}
+          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+          {% endfor %}
+          
+        </div>
+      </div>
+      {% comment %} end background {% endcomment %}
+
+{% comment %} news block {% endcomment %}
+<div class = "main">
+  <div class "news_part">
+      <div class = 'news_hed mt-4'>
+        <h1 class="fw-semibold"> {% trans "Що нового" %}</h1>
+          <h3>Більше
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </h3>
+
+              {% comment %} card news {% endcomment %}
+    </div>
+    {% for p in posts %}
+    <div class="row row-cols-2 row-cols-md-3 g- mt-4" href = "{{ p.get_absolute_url }}">
+      <div class="col">
+        
+        <a href = "{{ p.get_absolute_url }}">
+        <div class="card h-50 ">
+          <img src="{{p.photo.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{p.title}}</h5>
+            {% autoescape on %}
+            <p class="card-text">	{{p.content|linebreaks|truncatewords:50}}</p>
+          </a>
+          </div>
+          {% endautoescape %}
+          <div class="card-footer">
+            <small class="text-muted">Дата: {{p.time_update|date:"d-m-Y H:i:s"}}</small>
+          </div>
+        </div>
+        
+      </div>
+ 
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+
+
+
+  
+</div>
+
+
+{% endblock content %}
+
